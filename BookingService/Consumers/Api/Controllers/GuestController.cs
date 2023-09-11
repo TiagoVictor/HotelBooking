@@ -19,7 +19,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GuestDTO>> Post(GuestDTO guest)
+        public async Task<ActionResult<GuestResponse>> Post(GuestDTO guest)
         {
             var request = new CreateGuestRequest
             {
@@ -28,14 +28,18 @@ namespace Api.Controllers
 
             var res = await _guestManager.CreateGuest(request);
 
-            if(res.Success) return Created("", res.Data);
+            if (res.Success)
+                return Created("", res.Data);
 
-            if(res.ErrorCode == ErrorCode.NOT_FOUND)
+            return res.ErrorCode switch
             {
-                return BadRequest(res);
-            }
-
-            return BadRequest(500);
+                ErrorCode.NOT_FOUND => NotFound(res),
+                ErrorCode.COULDNOT_STORE_DATA => BadRequest(res),
+                ErrorCode.INVALID_DOCUMENT => BadRequest(res),
+                ErrorCode.MISSING_REQUIRED_INFORMATION => BadRequest(res),
+                ErrorCode.INVALID_EMAIL => BadRequest(res),
+                _ => BadRequest(500),
+            };
         }
     }
 }
