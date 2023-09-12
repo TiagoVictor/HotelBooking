@@ -37,7 +37,7 @@ namespace Application.Guest
                 {
                     Success = false,
                     ErrorCode = ErrorCode.INVALID_DOCUMENT,
-                    Message = " Invalid ID passed"
+                    Message = "Invalid ID passed"
                 };
             }
             catch (MissingRequiredInformation)
@@ -46,7 +46,7 @@ namespace Application.Guest
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = " Missing Required Information"
+                    Message = "Missing Required Information"
                 };
             }
             catch (InvalidEmailException)
@@ -55,16 +55,16 @@ namespace Application.Guest
                 {
                     Success = false,
                     ErrorCode = ErrorCode.INVALID_EMAIL,
-                    Message = " Invalid Email"
+                    Message = "Invalid Email"
                 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new GuestResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.COULDNOT_STORE_DATA,
-                    Message = " There was an error when saving to DB"
+                    Message = "There was an error when saving to DB"
                 };
             }
         }
