@@ -7,10 +7,10 @@ namespace Domain.DomainEntities
     public class Guest
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public PersonId DocumentId { get; set; }
+        public string Name { get; set; } = "";
+        public string Surname { get; set; } = "";
+        public string Email { get; set; } = "";
+        public PersonId DocumentId { get; set; } = new();
         private void ValidateState()
         {
             if (DocumentId == null ||

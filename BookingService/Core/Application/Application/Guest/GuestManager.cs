@@ -58,7 +58,7 @@ namespace Application.Guest
                     Message = "Invalid Email"
                 };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new GuestResponse
                 {

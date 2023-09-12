@@ -7,6 +7,8 @@ namespace Domain.DomainEntities
         public Booking()
         {
             Status = Status.Created;
+            Room = new Room();
+            Guest = new Guest();
         }
 
         public int Id { get; set; }

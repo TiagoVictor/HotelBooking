@@ -11,7 +11,7 @@ namespace ApplicationTests
 
     public class GuestManagerTest
     {
-        GuestManager guestManager;
+        GuestManager? guestManager;
 
         [Fact]
         public async Task HappyPath()
