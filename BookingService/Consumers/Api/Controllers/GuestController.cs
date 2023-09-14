@@ -33,13 +33,22 @@ namespace Api.Controllers
 
             return res.ErrorCode switch
             {
-                ErrorCode.NOT_FOUND => NotFound(res),
                 ErrorCode.COULDNOT_STORE_DATA => BadRequest(res),
                 ErrorCode.INVALID_DOCUMENT => BadRequest(res),
                 ErrorCode.MISSING_REQUIRED_INFORMATION => BadRequest(res),
                 ErrorCode.INVALID_EMAIL => BadRequest(res),
                 _ => BadRequest(500),
             };
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GuestDTO>> Get(int guestId)
+        {
+            var res = await _guestManager.GetGuestAsync(guestId);
+
+            if (res.Success) return Ok(res.Data);
+
+            return NotFound(res);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.DomainPorts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Guest
 {
@@ -13,15 +14,20 @@ namespace Data.Guest
 
         public async Task<int> Create(Domain.DomainEntities.Guest guest)
         {
-            await _context.Guests.AddAsync(guest);
-            await _context.SaveChangesAsync();
+            await _context
+                .Guests
+                .AddAsync(guest);
+            await _context
+                .SaveChangesAsync();
 
             return guest.Id;
         }
 
-        public Task<Domain.DomainEntities.Guest> Get(int id)
+        public async Task<Domain.DomainEntities.Guest?> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context
+                .Guests
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
