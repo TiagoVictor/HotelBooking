@@ -1,4 +1,6 @@
-﻿using Domain.DomainValueObjects;
+﻿using Domain.DomainExceptions;
+using Domain.DomainPorts;
+using Domain.DomainValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace Domain.DomainEntities
         {
             get
             {
-                if (this.InMaintence || this.HasGuest)
+                if (InMaintence || HasGuest)
                 {
                     return false;
                 }
@@ -31,6 +33,20 @@ namespace Domain.DomainEntities
             {
                 return true;
             }
+        }
+
+        private void ValidateState()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new InvalidRoomDataException();
+        }
+
+        public async Task Save(IRoomRepository roomRepository)
+        {
+            ValidateState();
+
+            if(Id == 0)
+                Id = await roomRepository.Create(this);
         }
     }
 }
