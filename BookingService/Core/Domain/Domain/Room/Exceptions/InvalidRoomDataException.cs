@@ -8,5 +8,6 @@ namespace Domain.Room.Exceptions
 {
     public class InvalidRoomDataException : Exception
     {
+        public override string Message => "Missing required information passed";
     }
 }

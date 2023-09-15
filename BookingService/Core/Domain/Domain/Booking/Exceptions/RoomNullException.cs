@@ -2,5 +2,6 @@
 {
     public class RoomNullException : Exception
     {
+        public override string Message => "Room was null";
     }
 }

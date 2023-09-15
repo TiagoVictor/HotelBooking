@@ -31,13 +31,13 @@ namespace Application.Room
                     Data = request.Data
                 };
             }
-            catch (InvalidRoomDataException)
+            catch (InvalidRoomDataException ex)
             {
                 return new RoomResponse
                 {
                     Success = false,
                     ErrorCode = Application.Responses.ErrorCode.ROOM_MISSING_REQUIRED_INFORMATION,
-                    Message = "Missing required information passed"
+                    Message = ex.Message
                 };
             }
             catch (Exception)
@@ -54,7 +54,7 @@ namespace Application.Room
         public async Task<RoomResponse> GetRoomAsync(int id)
         {
             return new RoomResponse{
-                Data = RoomDTO.MapToDto(await _roomRepository.Get(id))
+                Data = RoomDTO.MapToDto(await _roomRepository.Get(id) ?? new())
             };
         }
     }

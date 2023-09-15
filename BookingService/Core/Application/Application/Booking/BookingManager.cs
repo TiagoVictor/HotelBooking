@@ -45,58 +45,58 @@ namespace Application.Booking
                     Data = request.Data
                 };
             }
-            catch (PlacedAtNullException)
+            catch (PlacedAtNullException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.BOOKING_COLD_NOT_STORE_DATA,
-                    Message = "PlacedAt was null"
+                    Message = ex.Message
                 };
             }
-            catch (StartNullException)
+            catch (StartNullException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = "Start was null"
+                    Message = ex.Message
                 };
             }
-            catch (EndNullException)
+            catch (EndNullException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = "End was null"
+                    Message = ex.Message
                 };
             }
-            catch (RoomNullException)
+            catch (RoomNullException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = "Room was null"
+                    Message = ex.Message
                 };
             }
-            catch (GuestNullException)
+            catch (GuestNullException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = "Guest was null"
+                    Message = ex.Message
                 };
             }
-            catch (RoomCannotBeBookedException)
+            catch (RoomCannotBeBookedException ex)
             {
                 return new BookingResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.BOOKING_ROOM_CANNOT_BE_BOOKED,
-                    Message = "Room Cannot Be Booked"
+                    Message = ex.Message
                 }; 
             }
             catch (Exception)

@@ -31,31 +31,31 @@ namespace Application.Guest
                     Success = true,
                 };
             }
-            catch (InvalidPersonDocumentIdException)
+            catch (InvalidPersonDocumentIdException ex)
             {
                 return new GuestResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.INVALID_DOCUMENT,
-                    Message = "Invalid ID passed"
+                    Message = ex.Message
                 };
             }
-            catch (MissingRequiredInformation)
+            catch (MissingRequiredInformation ex)
             {
                 return new GuestResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.MISSING_REQUIRED_INFORMATION,
-                    Message = "Missing Required Information"
+                    Message = ex.Message
                 };
             }
-            catch (InvalidEmailException)
+            catch (InvalidEmailException ex)
             {
                 return new GuestResponse
                 {
                     Success = false,
                     ErrorCode = ErrorCode.INVALID_EMAIL,
-                    Message = "Invalid Email"
+                    Message = ex.Message
                 };
             }
             catch (Exception)
