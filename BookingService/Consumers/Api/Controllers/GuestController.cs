@@ -19,7 +19,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GuestResponse>> Post(GuestDTO guest)
+        public async Task<ActionResult<GuestResponse>> Post(GuestDto guest)
         {
             var request = new CreateGuestRequest
             {
@@ -42,7 +42,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GuestDTO>> Get(int guestId)
+        public async Task<ActionResult<GuestDto>> Get(int guestId)
         {
             var res = await _guestManager.GetGuestAsync(guestId);
 

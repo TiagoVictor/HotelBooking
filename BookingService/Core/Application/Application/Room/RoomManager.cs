@@ -2,13 +2,8 @@
 using Application.Room.Ports;
 using Application.Room.Requests;
 using Application.Room.Responses;
-using Domain.DomainExceptions;
-using Domain.DomainPorts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Room.Exceptions;
+using Domain.Room.Ports;
 
 namespace Application.Room
 {
@@ -56,9 +51,11 @@ namespace Application.Room
             }
         }
 
-        public Task<RoomResponse> GetRoomAsync(int id)
+        public async Task<RoomResponse> GetRoomAsync(int id)
         {
-            throw new NotImplementedException();
+            return new RoomResponse{
+                Data = RoomDTO.MapToDto(await _roomRepository.Get(id))
+            };
         }
     }
 }

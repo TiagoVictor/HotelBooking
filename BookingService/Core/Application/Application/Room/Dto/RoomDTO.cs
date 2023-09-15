@@ -1,11 +1,5 @@
-﻿using Entities = Domain.DomainEntities;
-using Domain.DomainValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.DomainEnums;
+﻿using Domain.Room.Enum;
+using Domain.Room.ValueObjects;
 
 namespace Application.Room.DTO
 {
@@ -18,9 +12,9 @@ namespace Application.Room.DTO
         public decimal Price { get; set; }
         public AcceptedCurrencies Currency { get; set; }
 
-        public static Entities.Room MapToEntity(RoomDTO dto)
+        public static Domain.Room.Entity.Room MapToEntity(RoomDTO dto)
         {
-            return new Entities.Room
+            return new Domain.Room.Entity.Room
             {
                 Id = dto.Id,
                 Name = dto.Name,
@@ -31,6 +25,19 @@ namespace Application.Room.DTO
                     Currency = dto.Currency,
                     Value = dto.Price
                 }
+            };
+        }
+
+        public static RoomDTO MapToDto(Domain.Room.Entity.Room room)
+        {
+            return new RoomDTO
+            {
+                Id = room.Id,
+                Name = room.Name,
+                Level = room.Level,
+                InMaintence = room.InMaintence,
+                Currency = room.Price.Currency,
+                Price = room.Price.Value
             };
         }
     }

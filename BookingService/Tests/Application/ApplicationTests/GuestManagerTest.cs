@@ -2,10 +2,10 @@ using Application.Guest;
 using Application.Guest.Dto;
 using Application.Guest.Requests;
 using Application.Responses;
-using Domain.DomainEntities;
-using Domain.DomainPorts;
+using Domain.Guest.Entity;
+using Domain.Guest.Enum;
+using Domain.Guest.Ports;
 using Moq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ApplicationTests
 {
@@ -17,7 +17,7 @@ namespace ApplicationTests
         [Fact]
         public async Task HappyPath()
         {
-            var guestDto = new GuestDTO
+            var guestDto = new GuestDto
             {
                 Name = "Fulano",
                 Surname = "Ciclano",
@@ -53,7 +53,7 @@ namespace ApplicationTests
         [InlineData("abc")]
         public async Task Should_Return_InvalidPersonDocumentIdException_WhenDocsAreInvalid(string docNumber)
         {
-            var guestDto = new GuestDTO
+            var guestDto = new GuestDto
             {
                 Name = "Fulano",
                 Surname = "Ciclano",
@@ -96,7 +96,7 @@ namespace ApplicationTests
             string surname,
             string email)
         {
-            var guestDto = new GuestDTO
+            var guestDto = new GuestDto
             {
                 Name = name,
                 Surname = surname,
@@ -126,7 +126,7 @@ namespace ApplicationTests
         [InlineData("b@b.com")]
         public async Task Should_Return_InvalidEmailExceptionException_WhenDocsAreInvalid(string email)
         {
-            var guestDto = new GuestDTO
+            var guestDto = new GuestDto
             {
                 Name = "Fulano",
                 Surname = "Ciclano",
@@ -178,9 +178,9 @@ namespace ApplicationTests
             {
                 Id = 333,
                 Name = "Teste",
-                DocumentId = new Domain.DomainValueObjects.PersonId
+                DocumentId = new Domain.Guest.ValueObjects.PersonId
                 {
-                    DocumentType = Domain.DomainEnums.DocumentType.DriverLicense,
+                    DocumentType = DocumentType.DriverLicense,
                     IdNumber = "123"
                 }
             };

@@ -16,6 +16,12 @@
         ROOM_INVALID_PERSON_ID = 102,
         ROOM_MISSING_REQUIRED_INFORMATION = 103,
         ROOM_INVALID_EMAIL = 104,
+
+        // Booking related code 200 to 299
+        BOOKING_NOT_FOUND = 200,
+        BOOKING_COLD_NOT_STORE_DATA = 201,
+        BOOKING_MISSING_REQUIRED_INFORMATION = 202,
+        BOOKING_ROOM_CANNOT_BE_BOOKED = 203
     }
 
     public abstract class Response

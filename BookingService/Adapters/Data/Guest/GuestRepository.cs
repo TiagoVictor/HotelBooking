@@ -1,4 +1,4 @@
-﻿using Domain.DomainPorts;
+﻿using Domain.Guest.Ports;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Guest
@@ -12,7 +12,7 @@ namespace Data.Guest
             _context = hotelDbContext;
         }
 
-        public async Task<int> Create(Domain.DomainEntities.Guest guest)
+        public async Task<int> Create(Domain.Guest.Entity.Guest guest)
         {
             await _context
                 .Guests
@@ -23,7 +23,7 @@ namespace Data.Guest
             return guest.Id;
         }
 
-        public async Task<Domain.DomainEntities.Guest?> Get(int id)
+        public async Task<Domain.Guest.Entity.Guest?> Get(int id)
         {
             return await _context
                 .Guests

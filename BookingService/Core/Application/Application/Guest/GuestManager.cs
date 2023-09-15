@@ -2,8 +2,8 @@
 using Application.Guest.Ports;
 using Application.Guest.Requests;
 using Application.Responses;
-using Domain.DomainExceptions;
-using Domain.DomainPorts;
+using Domain.Guest.Exceptions;
+using Domain.Guest.Ports;
 
 namespace Application.Guest
 {
@@ -19,7 +19,7 @@ namespace Application.Guest
         {
             try
             {
-                var guest = GuestDTO.MapEntity(request.Data);
+                var guest = GuestDto.MapEntity(request.Data);
 
                 await guest.Save(_guestRepository);
 
@@ -73,7 +73,7 @@ namespace Application.Guest
         {
             var guest = await _guestRepository.Get(guestId);
 
-            if(guest == null)
+            if (guest == null)
             {
                 return new GuestResponse
                 {
@@ -85,7 +85,7 @@ namespace Application.Guest
 
             return new GuestResponse
             {
-                Data = GuestDTO.MapToDto(guest),
+                Data = GuestDto.MapToDto(guest),
                 Success = true
             };
         }

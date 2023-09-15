@@ -2,7 +2,6 @@
 using Application.Room.DTO;
 using Application.Room.Ports;
 using Application.Room.Requests;
-using Application.Room.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
